@@ -15,5 +15,9 @@ class RessourcesForestieres:
         else:
             print("Erreur : La quantité ne peut pas être négative.")
 
-    def recolter(self):
-        print(f"Récolte de ressources forestières: {self.quantite} tonnes.")
+    def recolter(self, quantite_recoltee):
+        if quantite_recoltee > 0 and self.quantite >= quantite_recoltee:
+            print(f"Récolte de ressources forestières: {quantite_recoltee} tonnes.")
+            self.quantite += quantite_recoltee
+        else:
+            print("Erreur : La quantité à récolter est invalide.")

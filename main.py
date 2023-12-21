@@ -8,13 +8,16 @@ from module_bois.produits_bois import ProduitBois
 def main():
     # Création des employés
     ingenieur1 = Ingenieur("Alice", 60000, "Conception")
-    bucheron1 = Bucheron("Bob", 50000, 3)
+    bucheron1 = Bucheron("Bob", 50000, 3, False)
 
     # Création de l'entreprise avec un bucheron initial
     entreprise_bois = EntrepriseBois("BoisPro", [bucheron1], RessourcesForestieres(100))
 
+    # Embauche d'un ingénieur
+    entreprise_bois.embaucher(ingenieur1)
+
     # Embauche d'un nouvel employé
-    nouveau_bucheron = Bucheron("Charlie", 55000, 5)
+    nouveau_bucheron = Bucheron("Charlie", 55000, 5, True)
     entreprise_bois.embaucher(nouveau_bucheron)
 
     # Effectuer le travail dans l'entreprise
@@ -27,9 +30,6 @@ def main():
     produit_bois = ProduitBois("Planche de chêne", 20)
     entreprise_bois.produire_bois(produit_bois)
     entreprise_bois.vendre_produits()
-
-    # Embauche d'un ingénieur
-    entreprise_bois.embaucher(ingenieur1)
 
     # Licenciement d'un employé
     entreprise_bois.licencier(ingenieur1)

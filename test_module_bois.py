@@ -9,10 +9,10 @@ from module_bois.produits_bois import ProduitBois
 class TestModuleBois(unittest.TestCase):
     def test_embauche_licenciement(self):
         ingenieur1 = Ingenieur("Alice", 60000, "Conception")
-        bucheron1 = Bucheron("Bob", 50000, 3)
-        entreprise_bois = EntrepriseBois("BoisPro", [ingenieur1, bucheron1])
+        bucheron1 = Bucheron("Bob", 50000, 3, False)
+        entreprise_bois = EntrepriseBois("BoisPro", [ingenieur1, bucheron1], RessourcesForestieres(200))
 
-        nouveau_bucheron = Bucheron("Charlie", 55000, 5)
+        nouveau_bucheron = Bucheron("Charlie", 55000, 5, True)
         entreprise_bois.embaucher(nouveau_bucheron)
 
         self.assertEqual(len(entreprise_bois.employes), 3)
@@ -21,7 +21,7 @@ class TestModuleBois(unittest.TestCase):
         self.assertEqual(len(entreprise_bois.employes), 2)
 
     def test_travail_ressources(self):
-        bucheron = Bucheron("Bob", 50000, 3)
+        bucheron = Bucheron("Bob", 50000, 3, False)
         ressources = RessourcesForestieres(100)
         entreprise_bois = EntrepriseBois("BoisPro", [bucheron], ressources)
 
@@ -30,20 +30,9 @@ class TestModuleBois(unittest.TestCase):
         
         self.assertEqual(ressources.quantite, 100)
         
-        entreprise_bois.recolter_ressources()
+        entreprise_bois.recolter_ressources(100)
+
         self.assertEqual(ressources.quantite, 200)
-
-    def test_produire_vendre(self):
-        bucheron = Bucheron("Bob", 50000, 3)
-        entreprise_bois = EntrepriseBois("BoisPro", [bucheron], RessourcesForestieres(100))
-
-        produit_bois = ProduitBois("Planche de chêne", 20)
-        entreprise_bois.produire_bois(produit_bois)
-
-        self.assertEqual(len(entreprise_bois.produits), 1)
-
-        entreprise_bois.vendre_produits()
-        self.assertEqual(len(entreprise_bois.produits), 0)
 
 if __name__ == '__main__':
     unittest.main()

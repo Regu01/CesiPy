@@ -14,6 +14,9 @@ class EntrepriseBois:
     def embaucher(self, employe):
         self.employes.append(employe)
         print(f"{employe.nom} a été embauché chez {self.nom}.")
+        #Si l'employé embauché est un bucheron, alors on vérifie s'il possède la Sainte Barbe.
+        if(isinstance(employe,Bucheron)):
+            employe.estBarbu()
 
     def licencier(self, employe):
         self.employes.remove(employe)
@@ -23,8 +26,8 @@ class EntrepriseBois:
         for employe in self.employes:
             employe.travailler()
 
-    def recolter_ressources(self):
-        self.ressources_forestieres.recolter()
+    def recolter_ressources(self, quantite_recoltee):
+        self.ressources_forestieres.recolter(quantite_recoltee)
 
     def produire_bois(self, produit):
         self.produits.append(produit)
