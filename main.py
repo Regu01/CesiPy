@@ -24,7 +24,7 @@ def main():
     entreprise_bois.effectuer_travail()
 
     # Recolter des ressources forestières
-    entreprise_bois.recolter_ressources()
+    entreprise_bois.recolter_ressources(50)
 
     # Production et vente de produits en bois
     produit_bois = ProduitBois("Planche de chêne", 20)
